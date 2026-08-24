@@ -1,0 +1,17 @@
+INSERT INTO province (uuid, version, name) VALUES
+                                               (gen_random_uuid()::text, 0, 'Dolnośląskie'),
+                                               (gen_random_uuid()::text, 0, 'Kujawsko-Pomorskie'),
+                                               (gen_random_uuid()::text, 0, 'Lubelskie'),
+                                               (gen_random_uuid()::text, 0, 'Lubuskie'),
+                                               (gen_random_uuid()::text, 0, 'Łódzkie'),
+                                               (gen_random_uuid()::text, 0, 'Małopolskie'),
+                                               (gen_random_uuid()::text, 0, 'Mazowieckie'),
+                                               (gen_random_uuid()::text, 0, 'Opolskie'),
+                                               (gen_random_uuid()::text, 0, 'Podkarpackie'),
+                                               (gen_random_uuid()::text, 0, 'Podlaskie'),
+                                               (gen_random_uuid()::text, 0, 'Pomorskie'),
+                                               (gen_random_uuid()::text, 0, 'Śląskie'),
+                                               (gen_random_uuid()::text, 0, 'Świętokrzyskie'),
+                                               (gen_random_uuid()::text, 0, 'Warmińsko-Mazurskie'),
+                                               (gen_random_uuid()::text, 0, 'Wielkopolskie'),
+                                               (gen_random_uuid()::text, 0, 'Zachodniopomorskie');

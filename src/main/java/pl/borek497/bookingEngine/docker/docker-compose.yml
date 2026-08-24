@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: borekdb
+    environment:
+      POSTGRES_DB: booking
+      POSTGRES_USER: borek497
+      POSTGRES_PASSWORD: password8912
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
