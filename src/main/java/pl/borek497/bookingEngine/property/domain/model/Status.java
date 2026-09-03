@@ -1,6 +1,7 @@
 package pl.borek497.bookingEngine.property.domain.model;
 
-public enum PropertyStatus {
+public enum Status {
     ACTIVE,
-    CLOSED
+    OUT_OF_SERVICE,
+    INACTIVE
 }

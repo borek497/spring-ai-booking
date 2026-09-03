@@ -1,7 +1,7 @@
 package pl.borek497.bookingEngine.property.application;
 
 import org.springframework.ai.tool.annotation.ToolParam;
-import pl.borek497.bookingEngine.property.domain.model.PropertyStatus;
+import pl.borek497.bookingEngine.property.domain.model.Status;
 import pl.borek497.bookingEngine.property.domain.model.PropertyType;
 import pl.borek497.bookingEngine.property.domain.model.Province;
 
@@ -25,6 +25,6 @@ public record PropertySearchCriteria(
                 description = "Property status. Set only when explicitly specified",
                 required = false
         )
-        PropertyStatus propertyStatus
+        Status status
 ) {
 }

@@ -6,11 +6,14 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum PropertyType {
-    APARTMENT("Apartament"),
     HOTEL("Hotel"),
+    GUEST_HOUSE("Pokoje gościnne"),
+    APARTMENT("Apartament"),
     LAKE_HOUSE("Domek nad jeziorem"),
     FARM_HOUSE("Agroturystyka"),
-    ROOMS("Pokoje");
+    MOUNTAIN_HOUSE("Domek w górach"),
+    FOREST_HOUSE("Domek w lesie"),
+    CAMPING("Kemping");
 
     private final String displayName;
 }
