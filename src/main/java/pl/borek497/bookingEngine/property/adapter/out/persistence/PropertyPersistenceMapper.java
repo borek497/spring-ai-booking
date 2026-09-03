@@ -13,7 +13,7 @@ public class PropertyPersistenceMapper {
                 property.getName(),
                 property.getDescription(),
                 property.getPropertyType(),
-                property.getPropertyStatus(),
+                property.getStatus(),
                 property.getProvince(),
                 toAddressEmbeddable(property.getAddress())
         );
@@ -25,7 +25,7 @@ public class PropertyPersistenceMapper {
                 entity.getName(),
                 entity.getDescription(),
                 entity.getPropertyType(),
-                entity.getPropertyStatus(),
+                entity.getStatus(),
                 entity.getProvince(),
                 toAddressDomain(entity.getAddress())
         );

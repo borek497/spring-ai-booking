@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import pl.borek497.bookingEngine.jpa.BaseEntity;
-import pl.borek497.bookingEngine.property.domain.model.PropertyStatus;
+import pl.borek497.bookingEngine.property.domain.model.Status;
 import pl.borek497.bookingEngine.property.domain.model.PropertyType;
 import pl.borek497.bookingEngine.property.domain.model.Province;
 
@@ -25,7 +25,7 @@ public class PropertyEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "property_status")
-    private PropertyStatus propertyStatus;
+    private Status status;
 
     @Convert(converter = ProvinceConverter.class)
     @Column(name = "province_id", nullable = false)

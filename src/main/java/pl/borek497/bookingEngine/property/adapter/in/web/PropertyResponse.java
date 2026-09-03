@@ -7,7 +7,7 @@ public record PropertyResponse(
         String name,
         String description,
         PropertyType propertyType,
-        PropertyStatus propertyStatus,
+        Status status,
         Province province,
         Address address
 ) {
@@ -18,7 +18,7 @@ public record PropertyResponse(
                 property.getName(),
                 property.getDescription(),
                 property.getPropertyType(),
-                property.getPropertyStatus(),
+                property.getStatus(),
                 property.getProvince(),
                 property.getAddress()
         );

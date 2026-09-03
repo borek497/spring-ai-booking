@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import pl.borek497.bookingEngine.property.application.PropertySearchCriteria;
-import pl.borek497.bookingEngine.property.domain.model.PropertyStatus;
+import pl.borek497.bookingEngine.property.domain.model.Status;
 import pl.borek497.bookingEngine.property.domain.model.PropertyType;
 import pl.borek497.bookingEngine.property.domain.model.Province;
 
@@ -24,8 +24,8 @@ public final class PropertySpecification {
             specification = specification.and(hasCity(criteria.city().toLowerCase()));
         }
 
-        if (criteria.propertyStatus() != null) {
-            specification = specification.and(hasStatus(criteria.propertyStatus()));
+        if (criteria.status() != null) {
+            specification = specification.and(hasStatus(criteria.status()));
         }
 
         if (criteria.propertyType() != null) {
@@ -47,9 +47,9 @@ public final class PropertySpecification {
                         city.trim().toLowerCase(Locale.ROOT)));
     }
 
-    private static Specification<PropertyEntity> hasStatus(PropertyStatus propertyStatus) {
+    private static Specification<PropertyEntity> hasStatus(Status status) {
         return ((root, query, criteriaBuilder) ->
-                criteriaBuilder.equal(root.get("propertyStatus"), propertyStatus));
+                criteriaBuilder.equal(root.get("propertyStatus"), status));
     }
 
     private static Specification<PropertyEntity> hasType(PropertyType propertyType) {
