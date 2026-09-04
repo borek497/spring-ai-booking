@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistance.BookableUnitEntity;
 import pl.borek497.bookingEngine.jpa.BaseEntity;
 
 import java.util.List;

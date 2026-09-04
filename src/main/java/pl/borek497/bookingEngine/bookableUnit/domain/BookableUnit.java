@@ -1,7 +1,8 @@
-package pl.borek497.bookingEngine.property.domain.model;
+package pl.borek497.bookingEngine.bookableUnit.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import pl.borek497.bookingEngine.property.domain.model.Status;
 
 import java.math.BigDecimal;
 
@@ -11,8 +12,6 @@ public class BookableUnit {
 
     private Long id;
     private Long propertyId;
-    private String name;
-    private String description;
     private BookableUnitType bookableUnitType;
     private int maxGuests;
     private BigDecimal basePricePerNight;
