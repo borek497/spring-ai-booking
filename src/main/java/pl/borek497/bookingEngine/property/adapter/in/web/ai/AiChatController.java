@@ -9,7 +9,7 @@ import pl.borek497.bookingEngine.property.adapter.in.ai.PropertySearchTool;
 
 @RestController
 @RequestMapping("/ai")
-public class AiChatController {
+class AiChatController {
 
     private final ChatClient chatClient;
     private final PropertySearchTool tool;

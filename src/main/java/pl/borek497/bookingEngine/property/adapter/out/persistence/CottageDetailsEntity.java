@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistance.BookableUnitEntity;
 import pl.borek497.bookingEngine.jpa.BaseEntity;
 
 @Entity
@@ -24,8 +25,8 @@ public class CottageDetailsEntity extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "additional_data", nullable = false)
-    private String additionalData;
+//    @Column(name = "additional_data", nullable = false)
+//    private String additionalData;
 
     @Column(name = "room_count", nullable = false)
     private int roomCount;

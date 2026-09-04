@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Repository
-class PropertyRepositoryAdapter implements PropertyRepositoryPort {
+class PropertyPersistenceAdapter implements PropertyRepositoryPort {
 
     private final PropertyJpaRepository repository;
     private final PropertyPersistenceMapper mapper;

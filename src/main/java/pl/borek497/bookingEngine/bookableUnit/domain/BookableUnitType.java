@@ -1,4 +1,4 @@
-package pl.borek497.bookingEngine.property.domain.model;
+package pl.borek497.bookingEngine.bookableUnit.domain;
 
 public enum BookableUnitType {
     ROOM,
