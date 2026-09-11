@@ -1,0 +1,33 @@
+### Pobranie wszystkich Properties
+GET http://localhost:8080/properties
+
+### Pobranie dostępnych pokoi po id
+GET http://localhost:8080//properties/1/rooms/available
+
+### Pobranie property po province
+GET http://localhost:8080/properties?province=lubuskie
+
+###
+GET http://localhost:8080/properties?propertyType=LAKE_HOUSE
+
+###
+POST http://localhost:8080/ai/chat
+Content-Type: application/json
+
+{
+  "message": "Znajdź mi obiekty typu mountain house w województwie małopolskim i podaj tylko ich nazwy"
+}
+
+###
+POST http://localhost:8080/ai/test2
+Content-Type: application/json
+
+###
+POST http://localhost:8080/ollama/test3
+Content-Type: application/json
+
+### Pobranie wszystkich bookable-units dla podanego propertyId
+GET localhost:8080/bookable-units?propertyId=10
+
+### Pobranie wszystkich pokoi dla wskazanego propertyId i roomCategory
+GET localhost:8080/bookable-units/rooms?propertyId=10&roomCategory=SUITE

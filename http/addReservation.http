@@ -1,0 +1,17 @@
+### Utwórz nową rezerwację
+POST http://localhost:8080/reservations
+Content-Type: application/json
+
+{
+  "bookableUnitId": 2420,
+  "startDate": "2026-11-18",
+  "endDate": "2026-11-21",
+  "userId": 1,
+  "numberOfGuests": 3
+}
+
+### Pobranie wszystkich bookable-units dla podanego propertyId
+GET localhost:8080/bookable-units?propertyId=10
+
+### Pobranie wszystkich pokoi dla wskazanego propertyId i roomCategory
+GET localhost:8080/bookable-units/rooms?propertyId=10&roomCategory=DELUXE
