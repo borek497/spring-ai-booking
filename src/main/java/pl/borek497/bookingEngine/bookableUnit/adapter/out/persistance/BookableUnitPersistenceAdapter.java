@@ -23,6 +23,14 @@ class BookableUnitPersistenceAdapter implements BookableUnitRepositoryPort {
     }
 
     @Override
+    public Optional<BookableUnit> findByIdForUpdate(Long id) {
+        return jpaRepository
+                .findByIdForUpdate(id)
+                .map(mapper::toDomain);
+    }
+
+
+    @Override
     public List<BookableUnit> findByPropertyId(Long propertyId) {
         return jpaRepository
                 .findByPropertyId(propertyId)
