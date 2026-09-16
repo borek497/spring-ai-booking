@@ -26,7 +26,7 @@ public class CreateReservationCommand {
 
     @NotNull
     @Positive
-    private Long userId;
+    private Long customerId;
 
     @NotNull
     @Positive

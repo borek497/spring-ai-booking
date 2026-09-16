@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.borek497.bookingEngine.bookableUnit.application.port.out.BookableUnitRepositoryPort;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
+import pl.borek497.bookingEngine.customer.application.port.out.CustomerRepositoryPort;
+import pl.borek497.bookingEngine.customer.domain.Customer;
 import pl.borek497.bookingEngine.exceptions.EntityNotFoundException;
 import pl.borek497.bookingEngine.property.domain.model.Status;
 import pl.borek497.bookingEngine.reservation.application.command.CreateReservationCommand;
@@ -23,11 +25,13 @@ class ReservationService implements ReservationUseCase {
 
     private final ReservationRepositoryPort reservationRepositoryPort;
     private final BookableUnitRepositoryPort bookableUnitRepository;
+    private final CustomerRepositoryPort customerRepositoryPort;
 
     @Override
     @Transactional
     public Reservation createReservation(CreateReservationCommand command) {
         validateDates(command);
+        validateCustomer(command.getCustomerId());
 
         BookableUnit bookableUnit = getBookableUnitByIdForUpdate(command.getBookableUnitId());
         validateGuests(command, bookableUnit);
@@ -42,11 +46,21 @@ class ReservationService implements ReservationUseCase {
                 command.getEndDate(),
                 ReservationStatus.NEW,
                 totalPrice,
-                command.getUserId(),
+                command.getCustomerId(),
                 command.getNumberOfGuests()
         );
 
         return reservationRepositoryPort.save(reservation);
+    }
+
+    private void validateCustomer(Long customerId) {
+        if (customerId == null || customerId <= 0) {
+            throw new IllegalArgumentException("CustomerId must be positive");
+        }
+
+        customerRepositoryPort
+                .findById(customerId)
+                .orElseThrow(() -> new EntityNotFoundException(Customer.class, customerId));
     }
 
     private void validateDates(CreateReservationCommand command) {

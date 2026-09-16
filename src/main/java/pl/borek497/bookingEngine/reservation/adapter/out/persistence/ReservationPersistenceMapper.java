@@ -26,7 +26,7 @@ public class ReservationPersistenceMapper {
                 entity.getEndDate(),
                 entity.getReservationStatus(),
                 entity.getTotalPrice(),
-                entity.getUserId(),
+                entity.getCustomerId(),
                 entity.getGuestsNumber()
         );
     }

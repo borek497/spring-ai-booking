@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.borek497.bookingEngine.reservation.application.command.CreateReservationCommand;
 import pl.borek497.bookingEngine.reservation.application.port.in.ReservationUseCase;
 import pl.borek497.bookingEngine.reservation.domain.Reservation;
 
 import java.net.URI;
+
+import static pl.borek497.bookingEngine.common.adapter.in.web.ResourceUriFactory.forCreatedResource;
 
 @RestController
 @RequestMapping("/reservations")
@@ -24,15 +25,7 @@ class ReservationController {
     @PostMapping
     public ResponseEntity<Void> createReservation(@Valid @RequestBody CreateReservationCommand command) {
         Reservation reservation = reservationUseCase.createReservation(command);
-        URI uri = createReservationUri(reservation);
+        URI uri = forCreatedResource(reservation.getId());
         return ResponseEntity.created(uri).build();
-    }
-
-    private static URI createReservationUri(Reservation reservation) {
-        return ServletUriComponentsBuilder
-                .fromCurrentRequestUri()
-                .path("/{id}")
-                .buildAndExpand(reservation.getId())
-                .toUri();
     }
 }
