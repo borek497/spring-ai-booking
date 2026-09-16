@@ -15,7 +15,7 @@ public record BookableUnitResponse(
         Status status
 ) {
 
-    public static BookableUnitResponse from(BookableUnit bookableUnit) {
+    public static BookableUnitResponse fromModel(BookableUnit bookableUnit) {
         return new BookableUnitResponse(
                 bookableUnit.getId(),
                 bookableUnit.getPropertyId(),

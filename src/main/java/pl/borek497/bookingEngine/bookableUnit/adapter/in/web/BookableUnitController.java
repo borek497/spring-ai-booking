@@ -8,7 +8,7 @@ import pl.borek497.bookingEngine.property.domain.RoomCategory;
 
 import java.util.List;
 
-import static pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnitResponse.from;
+import static pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnitResponse.fromModel;
 
 @RestController
 @RequestMapping("/bookable-units")
@@ -23,13 +23,13 @@ class BookableUnitController {
         return bookableUnitUseCase
                 .getByPropertyId(propertyId)
                 .stream()
-                .map(BookableUnitResponse::from)
+                .map(BookableUnitResponse::fromModel)
                 .toList();
     }
 
     @GetMapping("/{id}")
     public BookableUnitResponse getById(@PathVariable Long id) {
-        return from(bookableUnitUseCase.getById(id));
+        return fromModel(bookableUnitUseCase.getById(id));
     }
 
     @GetMapping("/rooms")

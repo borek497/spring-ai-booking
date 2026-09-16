@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistance.BookableUnitEntity;
 import pl.borek497.bookingEngine.jpa.BaseEntity;
 import pl.borek497.bookingEngine.reservation.domain.ReservationStatus;
 
@@ -39,8 +38,8 @@ public class ReservationEntity extends BaseEntity {
     )
     private BigDecimal totalPrice;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "customer_id", nullable = false)
+    private Long customerId;
 
     @Column(name = "guests_number")
     private int guestsNumber;

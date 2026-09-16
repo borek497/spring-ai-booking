@@ -1,0 +1,13 @@
+### Utworzenie Customer
+POST http://localhost:8080/customer
+Content-Type: application/json
+
+{
+    "firstName": "Mateusz",
+    "lastName": "",
+    "email": "borek.web1",
+    "phoneNumber": "884638256"
+}
+
+### Pobranie Customer po id
+GET http://localhost:8080/customer/1
