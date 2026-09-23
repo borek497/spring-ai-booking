@@ -2,9 +2,12 @@ package pl.borek497.bookingEngine.reservation.adapter.out.persistence;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
-import pl.borek497.bookingEngine.reservation.application.command.CreateReservationCommand;
 import pl.borek497.bookingEngine.reservation.application.port.out.ReservationRepositoryPort;
 import pl.borek497.bookingEngine.reservation.domain.Reservation;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 @AllArgsConstructor
@@ -21,14 +24,32 @@ class ReservationAdapter implements ReservationRepositoryPort {
     }
 
     @Override
-    public boolean existsOverlappingReservation(CreateReservationCommand command) {
+    public boolean existsOverlappingReservation(Long bookableUnitId,
+                                                LocalDate startDate,
+                                                LocalDate endDate) {
         return reservationJpaRepository
                 .findAll()
                 .stream()
                 .anyMatch(reservation ->
-                        reservation.getBookableUnitId().equals(command.getBookableUnitId())
-                                && reservation.getStartDate().isBefore(command.getEndDate())
-                                && reservation.getEndDate().isAfter(command.getStartDate())
+                        reservation.getBookableUnitId().equals(bookableUnitId)
+                                && reservation.getStartDate().isBefore(endDate)
+                                && reservation.getEndDate().isAfter(startDate)
                 );
+    }
+
+    @Override
+    public Optional<Reservation> findById(Long id) {
+        return reservationJpaRepository
+                .findById(id)
+                .map(mapper::toDomain);
+    }
+
+    @Override
+    public List<Reservation> findByCustomerId(Long customerId) {
+        return reservationJpaRepository
+                .findAllByCustomerId(customerId)
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
     }
 }

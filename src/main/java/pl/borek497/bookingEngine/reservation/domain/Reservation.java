@@ -17,6 +17,6 @@ public class Reservation {
     private LocalDate endDate;
     private ReservationStatus reservationStatus;
     private BigDecimal totalPrice;
-    private Long userId;
+    private Long customerId;
     private int guestsNumber;
 }

@@ -6,7 +6,7 @@ import pl.borek497.bookingEngine.property.domain.RoomCategory;
 
 @Getter
 @AllArgsConstructor
-public class RoomDetails {
+public class HotelRoomDetails {
 
     private Long bookableUnitId;
     private String roomNumber;

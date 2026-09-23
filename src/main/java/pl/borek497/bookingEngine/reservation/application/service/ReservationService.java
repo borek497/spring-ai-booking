@@ -3,12 +3,14 @@ package pl.borek497.bookingEngine.reservation.application.service;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import pl.borek497.bookingEngine.bookableUnit.application.port.out.BookableUnitRepositoryPort;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
 import pl.borek497.bookingEngine.customer.application.port.out.CustomerRepositoryPort;
 import pl.borek497.bookingEngine.customer.domain.Customer;
 import pl.borek497.bookingEngine.exceptions.EntityNotFoundException;
 import pl.borek497.bookingEngine.property.domain.model.Status;
+import pl.borek497.bookingEngine.reservation.application.ReservationDetails;
 import pl.borek497.bookingEngine.reservation.application.command.CreateReservationCommand;
 import pl.borek497.bookingEngine.reservation.application.port.in.ReservationUseCase;
 import pl.borek497.bookingEngine.reservation.application.port.out.ReservationRepositoryPort;
@@ -18,9 +20,11 @@ import pl.borek497.bookingEngine.reservation.domain.ReservationStatus;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Validated
 class ReservationService implements ReservationUseCase {
 
     private final ReservationRepositoryPort reservationRepositoryPort;
@@ -53,6 +57,25 @@ class ReservationService implements ReservationUseCase {
         return reservationRepositoryPort.save(reservation);
     }
 
+    @Override
+    public ReservationDetails getDetailsById(Long reservationId) {
+        Reservation reservation = reservationRepositoryPort
+                .findById(reservationId)
+                .orElseThrow(() -> new EntityNotFoundException(Reservation.class, reservationId));
+
+        Long customerId = reservation.getCustomerId();
+        Customer customer = customerRepositoryPort
+                .findById(customerId)
+                .orElseThrow(() -> new EntityNotFoundException(Customer.class, customerId));
+
+        return new ReservationDetails(reservation, customer);
+    }
+
+    @Override
+    public List<Reservation> getByCustomerId(Long customerId) {
+        return reservationRepositoryPort.findByCustomerId(customerId);
+    }
+
     private void validateCustomer(Long customerId) {
         if (customerId == null || customerId <= 0) {
             throw new IllegalArgumentException("CustomerId must be positive");
@@ -78,7 +101,7 @@ class ReservationService implements ReservationUseCase {
     }
 
     private void validateAvailability(CreateReservationCommand command) {
-        if (reservationRepositoryPort.existsOverlappingReservation(command)) {
+        if (reservationRepositoryPort.existsOverlappingReservation(command.getBookableUnitId(), command.getStartDate(), command.getEndDate())) {
             throw new IllegalStateException(
                     "Bookable unit is not available for selected dates"
             );
