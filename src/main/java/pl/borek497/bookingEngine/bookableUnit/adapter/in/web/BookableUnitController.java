@@ -22,6 +22,7 @@ class BookableUnitController {
 
     @GetMapping
     public List<BookableUnitResponse> getByPropertyId(@RequestParam Long propertyId) {
+        System.out.println("TEst");
         return bookableUnitUseCase
                 .getByPropertyId(propertyId)
                 .stream()
