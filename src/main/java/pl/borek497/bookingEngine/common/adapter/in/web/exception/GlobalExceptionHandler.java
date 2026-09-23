@@ -1,5 +1,6 @@
 package pl.borek497.bookingEngine.common.adapter.in.web.exception;
 
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -55,5 +56,18 @@ class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.CONFLICT)
                 .body(exception.getMessage());
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    ResponseEntity<Map<String, List<String>>> handleConstraintViolation(ConstraintViolationException exception) {
+        Map<String, List<String>> errors = new LinkedHashMap<>();
+        exception
+                .getConstraintViolations()
+                .forEach(violation -> errors.computeIfAbsent(
+                                violation.getPropertyPath().toString(),
+                                key -> new ArrayList<>())
+                        .add(violation.getMessage())
+                );
+        return ResponseEntity.badRequest().body(errors);
     }
 }

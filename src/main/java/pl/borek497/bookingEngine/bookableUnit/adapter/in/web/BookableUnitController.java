@@ -1,7 +1,9 @@
 package pl.borek497.bookingEngine.bookableUnit.adapter.in.web;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSearchCriteria;
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.BookableUnitUseCase;
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.SearchRoomsUseCase;
 import pl.borek497.bookingEngine.property.domain.RoomCategory;
@@ -40,6 +42,15 @@ class BookableUnitController {
                 .findRoomsByPropertyIdAndRoomCategory(propertyId, roomCategory)
                 .stream()
                 .map(RoomResponse::from)
+                .toList();
+    }
+
+    @GetMapping("/available")
+    public List<BookableUnitResponse> getAvailableUnits(@Valid @ModelAttribute BookableUnitSearchCriteria criteria) {
+        return bookableUnitUseCase
+                .search(criteria)
+                .stream()
+                .map(BookableUnitResponse::fromModel)
                 .toList();
     }
 }

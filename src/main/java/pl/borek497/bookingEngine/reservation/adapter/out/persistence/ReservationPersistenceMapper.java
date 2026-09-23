@@ -13,7 +13,7 @@ public class ReservationPersistenceMapper {
                 reservation.getEndDate(),
                 reservation.getReservationStatus(),
                 reservation.getTotalPrice(),
-                reservation.getUserId(),
+                reservation.getCustomerId(),
                 reservation.getGuestsNumber()
         );
     }

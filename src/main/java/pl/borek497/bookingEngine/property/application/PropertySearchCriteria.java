@@ -1,16 +1,19 @@
 package pl.borek497.bookingEngine.property.application;
 
+import jakarta.validation.constraints.Size;
 import org.springframework.ai.tool.annotation.ToolParam;
 import pl.borek497.bookingEngine.property.domain.model.Status;
 import pl.borek497.bookingEngine.property.domain.model.PropertyType;
 import pl.borek497.bookingEngine.property.domain.model.Province;
 
 public record PropertySearchCriteria(
+        @Size(min = 1, max = 30)
         @ToolParam(
                 description = "City name, for example Warszawa or Zakopane",
                 required = false
         ) String city,
 
+        @Size(min = 1, max = 30)
         @ToolParam(
                 description = "Province for example Lubuskie",
                 required = false
@@ -21,6 +24,7 @@ public record PropertySearchCriteria(
                 required = false
         )
         PropertyType propertyType,
+
         @ToolParam(
                 description = "Property status. Set only when explicitly specified",
                 required = false

@@ -24,7 +24,7 @@ class PropertyService implements PropertyUseCase {
 
     @Override
     public Optional<Property> findById(Long id) {
-        return Optional.empty();
+        return repositoryPort.findById(id);
     }
 
     @Override

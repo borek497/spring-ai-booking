@@ -14,17 +14,19 @@ import java.util.Optional;
 @Repository
 class PropertyPersistenceAdapter implements PropertyRepositoryPort {
 
-    private final PropertyJpaRepository repository;
+    private final PropertyJpaRepository propertyJpaRepository;
     private final PropertyPersistenceMapper mapper;
 
     @Override
     public Optional<Property> findById(Long id) {
-        return Optional.empty();
+        return propertyJpaRepository
+                .findById(id)
+                .map(mapper::toDomain);
     }
 
     @Override
     public List<Property> findAll() {
-        return repository
+        return propertyJpaRepository
                 .findAll()
                 .stream()
                 .map(mapper::toDomain)
@@ -33,7 +35,7 @@ class PropertyPersistenceAdapter implements PropertyRepositoryPort {
 
     @Override
     public List<Property> findByProvince(Province province) {
-        return repository
+        return propertyJpaRepository
                 .findByProvince(province)
                 .stream()
                 .map(mapper::toDomain)
@@ -42,7 +44,7 @@ class PropertyPersistenceAdapter implements PropertyRepositoryPort {
 
     @Override
     public List<Property> search(PropertySearchCriteria criteria) {
-        return repository
+        return propertyJpaRepository
                 .findAll(PropertySpecification.from(criteria))
                 .stream()
                 .map(mapper::toDomain)
