@@ -1,0 +1,2 @@
+### Pobranie szczegółów property po ID
+GET http://localhost:8080/properties/120
