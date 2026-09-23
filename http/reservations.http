@@ -3,11 +3,11 @@ POST http://localhost:8080/reservations
 Content-Type: application/json
 
 {
-  "bookableUnitId": 2420,
+  "bookableUnitId": 28828,
   "startDate": "2026-11-18",
   "endDate": "2026-11-21",
   "customerId": 1,
-  "numberOfGuests": 3
+  "numberOfGuests": 2
 }
 
 ### Pobranie wszystkich bookable-units dla podanego propertyId
@@ -15,3 +15,6 @@ GET localhost:8080/bookable-units?propertyId=10
 
 ### Pobranie wszystkich pokoi dla wskazanego propertyId i roomCategory
 GET localhost:8080/bookable-units/rooms?propertyId=10&roomCategory=DELUXE
+
+### Pobranie szczegółów rezerwacji
+GET http://localhost:8080/reservations/3
