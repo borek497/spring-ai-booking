@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.borek497.bookingEngine.property.application.PropertySearchCriteria;
 import pl.borek497.bookingEngine.property.application.port.in.PropertyUseCase;
 import pl.borek497.bookingEngine.property.application.port.out.PropertyRepositoryPort;
-import pl.borek497.bookingEngine.property.domain.model.Property;
-import pl.borek497.bookingEngine.property.domain.model.Province;
+import pl.borek497.bookingEngine.property.domain.Property;
+import pl.borek497.bookingEngine.property.domain.Province;
 
 import java.util.List;
 import java.util.Optional;

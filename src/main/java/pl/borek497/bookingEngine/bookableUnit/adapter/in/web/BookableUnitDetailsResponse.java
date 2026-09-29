@@ -1,10 +1,11 @@
 package pl.borek497.bookingEngine.bookableUnit.adapter.in.web;
 
 import lombok.Getter;
+import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitDetails;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
-import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnitSpecificDetails;
+import pl.borek497.bookingEngine.bookableUnit.domain.details.BookableUnitSpecificDetails;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnitType;
-import pl.borek497.bookingEngine.property.domain.model.Status;
+import pl.borek497.bookingEngine.property.domain.Status;
 
 import java.math.BigDecimal;
 

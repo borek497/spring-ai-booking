@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.borek497.bookingEngine.jpa.BaseEntity;
+import pl.borek497.bookingEngine.common.adapter.out.BaseEntity;
 import pl.borek497.bookingEngine.reservation.domain.ReservationStatus;
 
 import java.math.BigDecimal;

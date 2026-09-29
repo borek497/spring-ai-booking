@@ -1,6 +1,6 @@
 package pl.borek497.bookingEngine.bookableUnit.application.port.in;
 
-import pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnitDetails;
+import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitDetails;
 import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSearchCriteria;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
 

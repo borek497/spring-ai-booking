@@ -4,9 +4,9 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import pl.borek497.bookingEngine.property.application.PropertySearchCriteria;
-import pl.borek497.bookingEngine.property.domain.model.Status;
-import pl.borek497.bookingEngine.property.domain.model.PropertyType;
-import pl.borek497.bookingEngine.property.domain.model.Province;
+import pl.borek497.bookingEngine.property.domain.Status;
+import pl.borek497.bookingEngine.property.domain.PropertyType;
+import pl.borek497.bookingEngine.property.domain.Province;
 
 import java.util.Locale;
 

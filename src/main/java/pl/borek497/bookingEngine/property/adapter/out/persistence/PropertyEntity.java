@@ -4,10 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pl.borek497.bookingEngine.jpa.BaseEntity;
-import pl.borek497.bookingEngine.property.domain.model.Status;
-import pl.borek497.bookingEngine.property.domain.model.PropertyType;
-import pl.borek497.bookingEngine.property.domain.model.Province;
+import pl.borek497.bookingEngine.common.adapter.out.BaseEntity;
+import pl.borek497.bookingEngine.property.domain.Status;
+import pl.borek497.bookingEngine.property.domain.PropertyType;
+import pl.borek497.bookingEngine.property.domain.Province;
 
 @Entity
 @NoArgsConstructor

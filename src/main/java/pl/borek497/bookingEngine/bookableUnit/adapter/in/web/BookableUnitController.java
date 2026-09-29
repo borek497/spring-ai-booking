@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSearchCriteria;
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.BookableUnitUseCase;
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.SearchRoomsUseCase;
-import pl.borek497.bookingEngine.property.domain.RoomCategory;
+import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;
 
 import java.util.List;
 

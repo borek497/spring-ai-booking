@@ -1,8 +1,8 @@
 package pl.borek497.bookingEngine.bookableUnit.application.port.out;
 
-import pl.borek497.bookingEngine.property.domain.model.bookableType.ApartmentRoomDetails;
-import pl.borek497.bookingEngine.property.domain.model.bookableType.CottageDetails;
-import pl.borek497.bookingEngine.property.domain.model.bookableType.HotelRoomDetails;
+import pl.borek497.bookingEngine.bookableUnit.domain.details.ApartmentRoomDetails;
+import pl.borek497.bookingEngine.bookableUnit.domain.details.CottageDetails;
+import pl.borek497.bookingEngine.bookableUnit.domain.details.HotelRoomDetails;
 
 import java.util.Optional;
 

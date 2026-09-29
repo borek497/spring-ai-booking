@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.SearchRoomsUseCase;
 import pl.borek497.bookingEngine.bookableUnit.application.port.out.SearchRoomsRepositoryPort;
 import pl.borek497.bookingEngine.bookableUnit.domain.Room;
-import pl.borek497.bookingEngine.property.domain.RoomCategory;
+import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;
 
 import java.util.List;
 

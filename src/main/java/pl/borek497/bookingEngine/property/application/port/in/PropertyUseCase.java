@@ -1,7 +1,7 @@
 package pl.borek497.bookingEngine.property.application.port.in;
 
 import pl.borek497.bookingEngine.property.application.PropertySearchCriteria;
-import pl.borek497.bookingEngine.property.domain.model.Property;
+import pl.borek497.bookingEngine.property.domain.Property;
 
 import java.util.List;
 import java.util.Optional;

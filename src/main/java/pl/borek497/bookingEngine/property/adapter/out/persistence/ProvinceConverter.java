@@ -2,7 +2,7 @@ package pl.borek497.bookingEngine.property.adapter.out.persistence;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import pl.borek497.bookingEngine.property.domain.model.Province;
+import pl.borek497.bookingEngine.property.domain.Province;
 
 @Converter
 public class ProvinceConverter implements AttributeConverter<Province, Long> {

@@ -1,8 +1,8 @@
 package pl.borek497.bookingEngine.bookableUnit.adapter.in.web;
 
 import pl.borek497.bookingEngine.bookableUnit.domain.Room;
-import pl.borek497.bookingEngine.property.domain.RoomCategory;
-import pl.borek497.bookingEngine.property.domain.model.Status;
+import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;
+import pl.borek497.bookingEngine.property.domain.Status;
 
 import java.math.BigDecimal;
 
