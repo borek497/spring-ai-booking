@@ -1,10 +1,12 @@
 package pl.borek497.bookingEngine.property.adapter.out.persistence;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import pl.borek497.bookingEngine.jpa.BaseEntity;
 
 @Entity
 @Table(name = "apartment_room_details")
+@Getter
 public class ApartmentRoomDetailsEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)

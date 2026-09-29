@@ -10,7 +10,7 @@ import pl.borek497.bookingEngine.property.domain.RoomCategory;
 
 import java.util.List;
 
-import static pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnitResponse.fromModel;
+import static pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnitSummaryResponse.fromModel;
 
 @RestController
 @RequestMapping("/bookable-units")
@@ -21,18 +21,17 @@ class BookableUnitController {
     private final SearchRoomsUseCase searchRoomsUseCase;
 
     @GetMapping
-    public List<BookableUnitResponse> getByPropertyId(@RequestParam Long propertyId) {
-        System.out.println("TEst");
+    public List<BookableUnitSummaryResponse> getByPropertyId(@RequestParam Long propertyId) {
         return bookableUnitUseCase
                 .getByPropertyId(propertyId)
                 .stream()
-                .map(BookableUnitResponse::fromModel)
+                .map(BookableUnitSummaryResponse::fromModel)
                 .toList();
     }
 
     @GetMapping("/{id}")
-    public BookableUnitResponse getById(@PathVariable Long id) {
-        return fromModel(bookableUnitUseCase.getById(id));
+    public BookableUnitSummaryResponse getById(@PathVariable Long id) {
+        return fromModel(bookableUnitUseCase.getByBookableUnitId(id));
     }
 
     @GetMapping("/rooms")
@@ -47,11 +46,16 @@ class BookableUnitController {
     }
 
     @GetMapping("/available")
-    public List<BookableUnitResponse> getAvailableUnits(@Valid @ModelAttribute BookableUnitSearchCriteria criteria) {
+    public List<BookableUnitSummaryResponse> getAvailableUnits(@Valid @ModelAttribute BookableUnitSearchCriteria criteria) {
         return bookableUnitUseCase
                 .search(criteria)
                 .stream()
-                .map(BookableUnitResponse::fromModel)
+                .map(BookableUnitSummaryResponse::fromModel)
                 .toList();
+    }
+
+    @GetMapping("/{id}/details")
+    public BookableUnitDetailsResponse getDetailsById(@PathVariable Long id) {
+        return BookableUnitDetailsResponse.fromModel(bookableUnitUseCase.getDetailsById(id));
     }
 }
