@@ -8,8 +8,8 @@ import pl.borek497.bookingEngine.bookableUnit.application.port.out.BookableUnitR
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
 import pl.borek497.bookingEngine.customer.application.port.out.CustomerRepositoryPort;
 import pl.borek497.bookingEngine.customer.domain.Customer;
-import pl.borek497.bookingEngine.exceptions.EntityNotFoundException;
-import pl.borek497.bookingEngine.property.domain.model.Status;
+import pl.borek497.bookingEngine.common.application.exceptions.EntityNotFoundException;
+import pl.borek497.bookingEngine.property.domain.Status;
 import pl.borek497.bookingEngine.reservation.application.ReservationDetails;
 import pl.borek497.bookingEngine.reservation.application.command.CreateReservationCommand;
 import pl.borek497.bookingEngine.reservation.application.port.in.ReservationUseCase;

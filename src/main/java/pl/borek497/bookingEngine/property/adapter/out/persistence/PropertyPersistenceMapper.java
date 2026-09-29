@@ -1,8 +1,8 @@
 package pl.borek497.bookingEngine.property.adapter.out.persistence;
 
 import org.springframework.stereotype.Component;
-import pl.borek497.bookingEngine.property.domain.model.Address;
-import pl.borek497.bookingEngine.property.domain.model.Property;
+import pl.borek497.bookingEngine.property.domain.Address;
+import pl.borek497.bookingEngine.property.domain.Property;
 
 @Component
 public class PropertyPersistenceMapper {

@@ -7,7 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import pl.borek497.bookingEngine.customer.domain.exceptions.CustomerEmailAlreadyExistsException;
-import pl.borek497.bookingEngine.exceptions.EntityNotFoundException;
+import pl.borek497.bookingEngine.common.application.exceptions.EntityNotFoundException;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;

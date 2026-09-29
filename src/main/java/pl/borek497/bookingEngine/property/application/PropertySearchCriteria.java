@@ -2,9 +2,9 @@ package pl.borek497.bookingEngine.property.application;
 
 import jakarta.validation.constraints.Size;
 import org.springframework.ai.tool.annotation.ToolParam;
-import pl.borek497.bookingEngine.property.domain.model.Status;
-import pl.borek497.bookingEngine.property.domain.model.PropertyType;
-import pl.borek497.bookingEngine.property.domain.model.Province;
+import pl.borek497.bookingEngine.property.domain.Status;
+import pl.borek497.bookingEngine.property.domain.PropertyType;
+import pl.borek497.bookingEngine.property.domain.Province;
 
 public record PropertySearchCriteria(
         @Size(min = 1, max = 30)

@@ -1,6 +1,6 @@
 package pl.borek497.bookingEngine.property.adapter.in.web;
 
-import pl.borek497.bookingEngine.property.domain.model.*;
+import pl.borek497.bookingEngine.property.domain.*;
 
 public record PropertyResponse(
         Long id,

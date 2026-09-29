@@ -2,7 +2,7 @@ package pl.borek497.bookingEngine.property.adapter.out.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import pl.borek497.bookingEngine.property.domain.model.Province;
+import pl.borek497.bookingEngine.property.domain.Province;
 
 import java.util.List;
 

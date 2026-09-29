@@ -1,6 +1,6 @@
 package pl.borek497.bookingEngine.bookableUnit.adapter.in.web;
 
-import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnitSpecificDetails;
+import pl.borek497.bookingEngine.bookableUnit.domain.details.BookableUnitSpecificDetails;
 
 import java.util.List;
 
