@@ -18,9 +18,9 @@ class BookableUnitPersistenceAdapter implements BookableUnitRepositoryPort {
     private final BookableUnitPersistenceMapper mapper;
 
     @Override
-    public Optional<BookableUnit> findById(Long id) {
+    public Optional<BookableUnit> findByBookableUnitId(Long bookableUnitId) {
         return jpaRepository
-                .findById(id)
+                .findById(bookableUnitId)
                 .map(mapper::toDomain);
     }
 

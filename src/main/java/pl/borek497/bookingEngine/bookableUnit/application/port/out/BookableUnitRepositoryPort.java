@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface BookableUnitRepositoryPort {
 
-    Optional<BookableUnit> findById(Long id);
+    Optional<BookableUnit> findByBookableUnitId(Long bookableUnitId);
     Optional<BookableUnit> findByIdForUpdate(Long id);
     List<BookableUnit> findByPropertyId(Long propertyId);
     List<BookableUnit> search(BookableUnitSearchCriteria criteria);

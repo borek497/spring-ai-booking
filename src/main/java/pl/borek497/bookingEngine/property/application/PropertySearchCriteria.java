@@ -13,7 +13,6 @@ public record PropertySearchCriteria(
                 required = false
         ) String city,
 
-        @Size(min = 1, max = 30)
         @ToolParam(
                 description = "Province for example Lubuskie",
                 required = false

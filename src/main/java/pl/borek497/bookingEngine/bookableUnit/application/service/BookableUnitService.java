@@ -3,11 +3,15 @@ package pl.borek497.bookingEngine.bookableUnit.application.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+import pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnitDetails;
 import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSearchCriteria;
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.BookableUnitUseCase;
+import pl.borek497.bookingEngine.bookableUnit.application.port.out.ApartmentDetailsRepositoryPort;
 import pl.borek497.bookingEngine.bookableUnit.application.port.out.BookableUnitRepositoryPort;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
+import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnitSpecificDetails;
 import pl.borek497.bookingEngine.exceptions.EntityNotFoundException;
+import pl.borek497.bookingEngine.property.domain.model.bookableType.ApartmentDetails;
 import pl.borek497.bookingEngine.reservation.application.port.out.ReservationRepositoryPort;
 
 import java.util.List;
@@ -19,12 +23,13 @@ class BookableUnitService implements BookableUnitUseCase {
 
     private BookableUnitRepositoryPort repository;
     private ReservationRepositoryPort reservationRepositoryPort;
+    private ApartmentDetailsRepositoryPort apartmentDetailsRepositoryPort;
 
     @Override
-    public BookableUnit getById(Long id) {
+    public BookableUnit getByBookableUnitId(Long bookableUnitId) {
         return repository
-                .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(BookableUnit.class, id));
+                .findByBookableUnitId(bookableUnitId)
+                .orElseThrow(() -> new EntityNotFoundException(BookableUnit.class, bookableUnitId));
     }
 
     @Override
@@ -44,5 +49,18 @@ class BookableUnitService implements BookableUnitUseCase {
                 ))
                 .filter(unit -> unit.getBookableUnitType() == criteria.bookableUnitType())
                 .toList();
+    }
+
+    @Override
+    public BookableUnitDetails getDetailsById(Long bookableUnitId) {
+        BookableUnit bookableUnit = getByBookableUnitId(bookableUnitId);
+        BookableUnitSpecificDetails details = switch (bookableUnit.getBookableUnitType()) {
+            case APARTMENT -> apartmentDetailsRepositoryPort
+                    .findByBookableUnitId(bookableUnit.getId())
+                    .orElseThrow(() -> new EntityNotFoundException(ApartmentDetails.class, bookableUnitId));
+            default -> throw new IllegalArgumentException("Unrecognized bookableUnitType: " + bookableUnit.getBookableUnitType());
+        };
+
+        return new BookableUnitDetails(bookableUnit, details);
     }
 }

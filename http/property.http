@@ -1,2 +1,8 @@
 ### Pobranie szczegółów property po ID
 GET http://localhost:8080/properties/120
+
+### Pobranie dostępnych property po jakimś filtrze - województwo
+GET http://localhost:8080/properties?province=lubuskie
+
+### Pobranie dostępnych property po jakimś filtrze - propertyType
+GET http://localhost:8080/properties?propertyType=APARTMENT

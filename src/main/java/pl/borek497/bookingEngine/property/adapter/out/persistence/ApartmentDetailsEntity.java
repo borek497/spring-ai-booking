@@ -27,9 +27,6 @@ public class ApartmentDetailsEntity extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "total_capacity", nullable = false)
-    private int totalCapacity;
-
     @OneToMany(
             mappedBy = "apartmentDetails",
             cascade = CascadeType.ALL,
