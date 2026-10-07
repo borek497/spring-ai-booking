@@ -9,10 +9,10 @@ public enum PropertyType {
     HOTEL("Hotel"),
     GUEST_HOUSE("Pokoje gościnne"),
     APARTMENT("Apartament"),
-    LAKE_HOUSE("Domek nad jeziorem"),
+    LAKE_COTTAGE("Domek nad jeziorem"),
     FARM_HOUSE("Agroturystyka"),
-    MOUNTAIN_HOUSE("Domek w górach"),
-    FOREST_HOUSE("Domek w lesie"),
+    MOUNTAIN_COTTAGE("Domek w górach"),
+    FOREST_COTTAGE("Domek w lesie"),
     CAMPING("Kemping");
 
     private final String displayName;
