@@ -27,9 +27,6 @@ public class CottageDetailsEntity extends BaseEntity {
     @Column(name = "room_count", nullable = false)
     private int roomCount;
 
-    @Column(nullable = false)
-    private int capacity;
-
     @Column(name = "private_bathroom", nullable = false)
     private boolean privateBathroom;
 
