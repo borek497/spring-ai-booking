@@ -10,7 +10,6 @@ public class CottageDetails {
     private Long bookableUnitId;
     private String name;
     private String additionalData;
-    private int capacity;
     private int roomCapacity;
     private boolean privateBathroom;
     private boolean privateKitchen;

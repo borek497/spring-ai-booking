@@ -29,6 +29,7 @@ class BookableUnitController {
                 .toList();
     }
 
+    //ENDPOINT nie jest potrzebny bo niżej mamy /details który posiada bardziej kompletne dane jednostki rezerwowalnej
     @GetMapping("/{id}")
     public BookableUnitSummaryResponse getById(@PathVariable Long id) {
         return fromModel(bookableUnitUseCase.getByBookableUnitId(id));
@@ -54,6 +55,9 @@ class BookableUnitController {
                 .toList();
     }
 
+    /**
+    Pobranie szczegółów jednostki rezerwacyjnej
+     */
     @GetMapping("/{id}/details")
     public BookableUnitDetailsResponse getDetailsById(@PathVariable Long id) {
         return BookableUnitDetailsResponse.fromModel(bookableUnitUseCase.getDetailsById(id));
