@@ -1,6 +1,11 @@
 package pl.borek497.bookingEngine.bookableUnit.domain.details;
 
-public class GuestRoomDetails {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
+public class GuestRoomDetails implements BookableUnitDetails {
 
     private Long bookableUnitId;
     private String roomNumber;

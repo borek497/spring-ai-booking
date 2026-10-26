@@ -1,9 +1,10 @@
-package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence;
+package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.hotelroom;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.BookableUnitEntity;
 import pl.borek497.bookingEngine.common.adapter.out.BaseEntity;
 import pl.borek497.bookingEngine.property.adapter.out.persistence.PropertyEntity;
 import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;

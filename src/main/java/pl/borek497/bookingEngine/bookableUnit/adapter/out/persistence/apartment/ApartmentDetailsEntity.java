@@ -1,17 +1,20 @@
-package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence;
+package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.apartment;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.BookableUnitEntity;
 import pl.borek497.bookingEngine.common.adapter.out.BaseEntity;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cottage_details")
+@Table(name = "apartment_details")
 @Getter
-public class CottageDetailsEntity extends BaseEntity {
+public class ApartmentDetailsEntity extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(
@@ -24,8 +27,12 @@ public class CottageDetailsEntity extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @Column(name = "room_count", nullable = false)
-    private int roomCount;
+    @OneToMany(
+            mappedBy = "apartmentDetails",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<ApartmentRoomDetailsEntity> rooms;
 
     @Column(name = "private_bathroom", nullable = false)
     private boolean privateBathroom;

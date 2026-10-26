@@ -3,15 +3,13 @@ package pl.borek497.bookingEngine.bookableUnit.application.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitDetails;
+import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSummary;
 import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSearchCriteria;
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.BookableUnitUseCase;
-import pl.borek497.bookingEngine.bookableUnit.application.port.out.ApartmentDetailsRepositoryPort;
-import pl.borek497.bookingEngine.bookableUnit.application.port.out.BookableUnitRepositoryPort;
+import pl.borek497.bookingEngine.bookableUnit.application.port.out.*;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
-import pl.borek497.bookingEngine.bookableUnit.domain.details.BookableUnitSpecificDetails;
+import pl.borek497.bookingEngine.bookableUnit.domain.details.*;
 import pl.borek497.bookingEngine.common.application.exceptions.EntityNotFoundException;
-import pl.borek497.bookingEngine.bookableUnit.domain.details.ApartmentDetails;
 import pl.borek497.bookingEngine.reservation.application.port.out.ReservationRepositoryPort;
 
 import java.util.List;
@@ -24,6 +22,10 @@ class BookableUnitService implements BookableUnitUseCase {
     private BookableUnitRepositoryPort repository;
     private ReservationRepositoryPort reservationRepositoryPort;
     private ApartmentDetailsRepositoryPort apartmentDetailsRepositoryPort;
+    private HotelRoomDetailsRepositoryPort hotelRoomDetailsRepositoryPort;
+    private GuestHouseRoomDetailsRepositoryPort guestHouseRoomDetailsRepositoryPort;
+    private CottageDetailsRepositoryPort cottageDetailsRepositoryPort;
+
 
     @Override
     public BookableUnit getByBookableUnitId(Long bookableUnitId) {
@@ -52,15 +54,25 @@ class BookableUnitService implements BookableUnitUseCase {
     }
 
     @Override
-    public BookableUnitDetails getDetailsById(Long bookableUnitId) {
+    public BookableUnitSummary getDetailsById(Long bookableUnitId) {
         BookableUnit bookableUnit = getByBookableUnitId(bookableUnitId);
-        BookableUnitSpecificDetails details = switch (bookableUnit.getBookableUnitType()) {
+        BookableUnitDetails details = switch (bookableUnit.getBookableUnitType()) {
             case APARTMENT -> apartmentDetailsRepositoryPort
                     .findByBookableUnitId(bookableUnit.getId())
                     .orElseThrow(() -> new EntityNotFoundException(ApartmentDetails.class, bookableUnitId));
-            default -> throw new IllegalArgumentException("Unrecognized bookableUnitType: " + bookableUnit.getBookableUnitType());
+            case HOTEL_ROOM -> hotelRoomDetailsRepositoryPort
+                    .findByBookableUnitId(bookableUnit.getId())
+                    .orElseThrow(() -> new EntityNotFoundException(HotelRoomDetails.class, bookableUnitId));
+            case GUEST_ROOM -> guestHouseRoomDetailsRepositoryPort
+                    .findByBookableUnitId(bookableUnit.getId())
+                    .orElseThrow(() -> new EntityNotFoundException(GuestRoomDetails.class, bookableUnitId));
+            case COTTAGE -> cottageDetailsRepositoryPort
+                    .findByBookableUnitId(bookableUnit.getId())
+                    .orElseThrow(() -> new EntityNotFoundException(CottageDetails.class, bookableUnitId));
+            default ->
+                    throw new IllegalArgumentException("Unrecognized bookableUnitType: " + bookableUnit.getBookableUnitType());
         };
 
-        return new BookableUnitDetails(bookableUnit, details);
+        return new BookableUnitSummary(bookableUnit, details);
     }
 }

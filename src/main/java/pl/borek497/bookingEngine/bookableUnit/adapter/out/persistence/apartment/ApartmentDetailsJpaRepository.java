@@ -1,4 +1,4 @@
-package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence;
+package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.apartment;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

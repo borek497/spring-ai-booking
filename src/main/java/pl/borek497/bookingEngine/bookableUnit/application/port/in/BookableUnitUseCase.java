@@ -1,6 +1,6 @@
 package pl.borek497.bookingEngine.bookableUnit.application.port.in;
 
-import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitDetails;
+import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSummary;
 import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSearchCriteria;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
 
@@ -12,5 +12,5 @@ public interface BookableUnitUseCase {
     List<BookableUnit> getByPropertyId(Long propertyId);
     List<BookableUnit> search(BookableUnitSearchCriteria criteria);
     //BookableUnitStaffDetails getStaffDetailsById(Long id);
-    BookableUnitDetails getDetailsById(Long id);
+    BookableUnitSummary getDetailsById(Long id);
 }

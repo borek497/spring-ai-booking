@@ -1,4 +1,4 @@
-package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence;
+package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.hotelroom;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

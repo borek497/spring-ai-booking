@@ -2,10 +2,10 @@
 GET http://localhost:8080/bookable-units?propertyId=164
 
 ### Pobranie szczegółów jednostki rezerwowalnej
-GET http://localhost:8080/bookable-units/28830
+GET http://localhost:8080/bookable-units/2231
 
 ### Pobranie dostępnych opcji
 GET http://localhost:8080/bookable-units/available?propertyId=270&startDate=2026-11-18&endDate=2026-11-25&numberOfGuests=2&bookableUnitType=COTTAGE
 
 ### Pobranie szczegółów
-GET http://localhost:8080/bookable-units/28900/details
+GET http://localhost:8080/bookable-units/29003/details
