@@ -1,17 +1,18 @@
-package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence;
+package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.camping;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.BookableUnitEntity;
 import pl.borek497.bookingEngine.common.adapter.out.BaseEntity;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "caravan_details")
+@Table(name = "camping_area_details")
 @Getter
-public class CaravanDetailsEntity extends BaseEntity {
+public class CampingAreaDetailsEntity extends BaseEntity {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(
@@ -23,10 +24,4 @@ public class CaravanDetailsEntity extends BaseEntity {
 
     @Column(nullable = false)
     private int capacity;
-
-    @Column(name = "private_bathroom", nullable = false)
-    private boolean privateBathroom;
-
-    @Column(name = "private_kitchen", nullable = false)
-    private boolean privateKitchen;
 }

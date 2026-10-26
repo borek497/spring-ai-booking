@@ -1,7 +1,8 @@
 package pl.borek497.bookingEngine.bookableUnit.domain;
 
 public enum BookableUnitType {
-    ROOM,
+    HOTEL_ROOM,
+    GUEST_ROOM,
     APARTMENT,
     COTTAGE,
     CARAVAN,

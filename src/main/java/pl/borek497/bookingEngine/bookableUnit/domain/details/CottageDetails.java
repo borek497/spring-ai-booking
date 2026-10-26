@@ -5,12 +5,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CottageDetails {
+public class CottageDetails implements BookableUnitDetails {
 
     private Long bookableUnitId;
     private String name;
-    private String additionalData;
-    private int roomCapacity;
+    private int roomCount;
     private boolean privateBathroom;
     private boolean privateKitchen;
 }

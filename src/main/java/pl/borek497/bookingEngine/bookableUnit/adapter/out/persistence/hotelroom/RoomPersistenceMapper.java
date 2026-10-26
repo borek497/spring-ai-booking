@@ -1,6 +1,7 @@
-package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence;
+package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.hotelroom;
 
 import org.springframework.stereotype.Component;
+import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.BookableUnitEntity;
 import pl.borek497.bookingEngine.bookableUnit.domain.Room;
 
 @Component

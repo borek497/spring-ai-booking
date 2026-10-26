@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class ApartmentDetails implements BookableUnitSpecificDetails {
+public class ApartmentDetails implements BookableUnitDetails {
 
     private Long bookableUnitId;
     private String name;

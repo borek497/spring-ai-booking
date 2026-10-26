@@ -10,7 +10,7 @@ import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;
 
 import java.util.List;
 
-import static pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnitSummaryResponse.fromModel;
+import static pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnitResponse.fromModel;
 
 @RestController
 @RequestMapping("/bookable-units")
@@ -21,17 +21,17 @@ class BookableUnitController {
     private final SearchRoomsUseCase searchRoomsUseCase;
 
     @GetMapping
-    public List<BookableUnitSummaryResponse> getByPropertyId(@RequestParam Long propertyId) {
+    public List<BookableUnitResponse> getByPropertyId(@RequestParam Long propertyId) {
         return bookableUnitUseCase
                 .getByPropertyId(propertyId)
                 .stream()
-                .map(BookableUnitSummaryResponse::fromModel)
+                .map(BookableUnitResponse::fromModel)
                 .toList();
     }
 
     //ENDPOINT nie jest potrzebny bo niżej mamy /details który posiada bardziej kompletne dane jednostki rezerwowalnej
     @GetMapping("/{id}")
-    public BookableUnitSummaryResponse getById(@PathVariable Long id) {
+    public BookableUnitResponse getById(@PathVariable Long id) {
         return fromModel(bookableUnitUseCase.getByBookableUnitId(id));
     }
 
@@ -47,11 +47,11 @@ class BookableUnitController {
     }
 
     @GetMapping("/available")
-    public List<BookableUnitSummaryResponse> getAvailableUnits(@Valid @ModelAttribute BookableUnitSearchCriteria criteria) {
+    public List<BookableUnitResponse> getAvailableUnits(@Valid @ModelAttribute BookableUnitSearchCriteria criteria) {
         return bookableUnitUseCase
                 .search(criteria)
                 .stream()
-                .map(BookableUnitSummaryResponse::fromModel)
+                .map(BookableUnitResponse::fromModel)
                 .toList();
     }
 
