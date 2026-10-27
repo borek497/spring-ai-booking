@@ -2,7 +2,7 @@
 GET http://localhost:8080/properties
 
 ### Pobranie dostępnych pokoi po id
-GET http://localhost:8080//properties/1/rooms/available
+GET http://localhost:8080/properties/1/rooms/available
 
 ### Pobranie property po province
 GET http://localhost:8080/properties?province=lubuskie
@@ -29,5 +29,5 @@ Content-Type: application/json
 ### Pobranie wszystkich bookable-units dla podanego propertyId
 GET localhost:8080/bookable-units?propertyId=10
 
-### Pobranie wszystkich pokoi dla wskazanego propertyId i roomCategory
-GET localhost:8080/bookable-units/rooms?propertyId=10&roomCategory=SUITE
+### Pobranie wszystkich pokoi dla wskazanego propertyId i hotelRoomCategory
+GET localhost:8080/bookable-units/hotel-rooms?propertyId=10&hotelRoomCategory=SUITE

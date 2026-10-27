@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.BookableUnitEntity;
 import pl.borek497.bookingEngine.common.adapter.out.BaseEntity;
 import pl.borek497.bookingEngine.property.adapter.out.persistence.PropertyEntity;
-import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;
+import pl.borek497.bookingEngine.bookableUnit.domain.HotelRoomCategory;
 
 @Entity
 @NoArgsConstructor
@@ -15,8 +15,8 @@ import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;
 @Table(
         name = "hotel_room_details",
         uniqueConstraints = @UniqueConstraint(
-                name = "uk_room_details_property_room_number",
-                columnNames = {"property_id", "room_number"}
+                name = "uk_room_details_property_hotel_room_number",
+                columnNames = {"property_id", "hotel_room_number"}
         )
 )
 @Getter
@@ -34,10 +34,10 @@ public class HotelRoomDetailsEntity extends BaseEntity {
     @JoinColumn(name = "property_id", nullable = false)
     private PropertyEntity property;
 
-    @Column(name = "room_number", nullable = false)
-    private String roomNumber;
+    @Column(name = "hotel_room_number", nullable = false)
+    private String hotelRoomNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "room_category", nullable = false)
-    private RoomCategory roomCategory;
+    @Column(name = "hotel_room_category", nullable = false)
+    private HotelRoomCategory hotelRoomCategory;
 }

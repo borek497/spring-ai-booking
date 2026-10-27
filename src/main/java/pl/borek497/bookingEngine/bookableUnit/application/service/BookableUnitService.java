@@ -26,7 +26,6 @@ class BookableUnitService implements BookableUnitUseCase {
     private GuestHouseRoomDetailsRepositoryPort guestHouseRoomDetailsRepositoryPort;
     private CottageDetailsRepositoryPort cottageDetailsRepositoryPort;
 
-
     @Override
     public BookableUnit getByBookableUnitId(Long bookableUnitId) {
         return repository

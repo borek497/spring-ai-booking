@@ -9,8 +9,8 @@ public class HotelRoomDetailsMapper {
     public HotelRoomDetails toDomain(HotelRoomDetailsEntity entity) {
         return new HotelRoomDetails(
                 entity.getBookableUnit().getId(),
-                entity.getRoomNumber(),
-                entity.getRoomCategory()
+                entity.getHotelRoomNumber(),
+                entity.getHotelRoomCategory()
         );
     }
 }

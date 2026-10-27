@@ -13,8 +13,8 @@ Content-Type: application/json
 ### Pobranie wszystkich bookable-units dla podanego propertyId
 GET localhost:8080/bookable-units?propertyId=10
 
-### Pobranie wszystkich pokoi dla wskazanego propertyId i roomCategory
-GET localhost:8080/bookable-units/rooms?propertyId=10&roomCategory=DELUXE
+### Pobranie wszystkich pokoi dla wskazanego propertyId i hotelRoomCategory
+GET localhost:8080/bookable-units/rooms?propertyId=10&hotelRoomCategory=DELUXE
 
 ### Pobranie szczegółów rezerwacji
 GET http://localhost:8080/reservations/3

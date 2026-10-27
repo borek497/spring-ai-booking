@@ -4,11 +4,11 @@ import pl.borek497.bookingEngine.property.domain.Status;
 
 import java.math.BigDecimal;
 
-public record Room(
+public record HotelRoom(
         Long bookableUnitId,
         Long propertyId,
         String roomNumber,
-        RoomCategory roomCategory,
+        HotelRoomCategory hotelRoomCategory,
         int maxGuests,
         BigDecimal basePricePerNight,
         Status status) {

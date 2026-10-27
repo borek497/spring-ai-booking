@@ -3,8 +3,8 @@ package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.hotelroom
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import pl.borek497.bookingEngine.bookableUnit.application.port.out.SearchRoomsRepositoryPort;
-import pl.borek497.bookingEngine.bookableUnit.domain.Room;
-import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;
+import pl.borek497.bookingEngine.bookableUnit.domain.HotelRoom;
+import pl.borek497.bookingEngine.bookableUnit.domain.HotelRoomCategory;
 import pl.borek497.bookingEngine.property.domain.Status;
 
 import java.util.List;
@@ -13,15 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 class SearchRoomRepositoryAdapter implements SearchRoomsRepositoryPort {
 
-    private final SearchRoomJpaRepository searchRoomJpaRepository;
-    private final RoomPersistenceMapper mapper;
+    private final SearchHotelRoomJpaRepository searchHotelRoomJpaRepository;
+    private final HotelRoomPersistenceMapper mapper;
 
     @Override
-    public List<Room> findByPropertyIdAndRoomCategory(Long propertyId, RoomCategory roomCategory) {
-        return searchRoomJpaRepository
-                .findByBookableUnitPropertyIdAndRoomCategoryAndBookableUnitStatus(
+    public List<HotelRoom> findByPropertyIdAndRoomCategory(Long propertyId, HotelRoomCategory hotelRoomCategory) {
+        return searchHotelRoomJpaRepository
+                .findByBookableUnitPropertyIdAndHotelRoomCategoryAndBookableUnitStatus(
                         propertyId,
-                        roomCategory,
+                        hotelRoomCategory,
                         Status.ACTIVE
                 )
                 .stream()
