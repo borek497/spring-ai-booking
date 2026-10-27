@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSearchCriteria;
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.BookableUnitUseCase;
-import pl.borek497.bookingEngine.bookableUnit.application.port.in.SearchRoomsUseCase;
-import pl.borek497.bookingEngine.bookableUnit.domain.RoomCategory;
+import pl.borek497.bookingEngine.bookableUnit.application.port.in.SearchHotelRoomUseCase;
+import pl.borek497.bookingEngine.bookableUnit.domain.HotelRoomCategory;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import static pl.borek497.bookingEngine.bookableUnit.adapter.in.web.BookableUnit
 class BookableUnitController {
 
     private final BookableUnitUseCase bookableUnitUseCase;
-    private final SearchRoomsUseCase searchRoomsUseCase;
+    private final SearchHotelRoomUseCase searchHotelRoomUseCase;
 
     @GetMapping
     public List<BookableUnitResponse> getByPropertyId(@RequestParam Long propertyId) {
@@ -35,14 +35,15 @@ class BookableUnitController {
         return fromModel(bookableUnitUseCase.getByBookableUnitId(id));
     }
 
-    @GetMapping("/rooms")
-    public List<RoomResponse> getRoomsByPropertyIdAndRoomCategory(
+    //Wyszukiwarka pokoi hotelowych
+    @GetMapping("/hotel-rooms")
+    public List<HotelRoomResponse> getHotelRoomsByPropertyIdAndHotelRoomCategory(
             @RequestParam Long propertyId,
-            @RequestParam RoomCategory roomCategory) {
-        return searchRoomsUseCase
-                .findRoomsByPropertyIdAndRoomCategory(propertyId, roomCategory)
+            @RequestParam HotelRoomCategory hotelRoomCategory) {
+        return searchHotelRoomUseCase
+                .findRoomsByPropertyIdAndRoomCategory(propertyId, hotelRoomCategory)
                 .stream()
-                .map(RoomResponse::from)
+                .map(HotelRoomResponse::from)
                 .toList();
     }
 

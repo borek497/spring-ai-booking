@@ -2,19 +2,19 @@ package pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.hotelroom
 
 import org.springframework.stereotype.Component;
 import pl.borek497.bookingEngine.bookableUnit.adapter.out.persistence.BookableUnitEntity;
-import pl.borek497.bookingEngine.bookableUnit.domain.Room;
+import pl.borek497.bookingEngine.bookableUnit.domain.HotelRoom;
 
 @Component
-public class RoomPersistenceMapper {
+public class HotelRoomPersistenceMapper {
 
-    public Room toRoom(HotelRoomDetailsEntity hotelRoomDetailsEntity) {
+    public HotelRoom toRoom(HotelRoomDetailsEntity hotelRoomDetailsEntity) {
         BookableUnitEntity unit = hotelRoomDetailsEntity.getBookableUnit();
 
-        return new Room(
+        return new HotelRoom(
                 unit.getId(),
                 unit.getProperty().getId(),
-                hotelRoomDetailsEntity.getRoomNumber(),
-                hotelRoomDetailsEntity.getRoomCategory(),
+                hotelRoomDetailsEntity.getHotelRoomNumber(),
+                hotelRoomDetailsEntity.getHotelRoomCategory(),
                 unit.getMaxGuests(),
                 unit.getBasePricePerNight(),
                 unit.getStatus()

@@ -9,3 +9,6 @@ GET http://localhost:8080/bookable-units/available?propertyId=270&startDate=2026
 
 ### Pobranie szczegółów
 GET http://localhost:8080/bookable-units/29003/details
+
+### Pobranie wszystkich pokoi dla wskazanego propertyId i hotelRoomCategory
+GET localhost:8080/bookable-units/hotel-rooms?propertyId=10&hotelRoomCategory=FAMILY

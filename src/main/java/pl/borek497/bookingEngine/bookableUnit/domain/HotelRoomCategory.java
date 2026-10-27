@@ -5,8 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum RoomCategory {
-    GUEST_ROOM(""),
+public enum HotelRoomCategory {
     STANDARD("pokój z łazienką o powierzchni 12-25m2"),
     SUPERIOR("pokój o podwyższonym standardzie z łazienką o powierzchni 25-35m2"),
     DELUXE("pokój premium z osobną sypialnią, łazienką i salonem o powierzchni 35-45m2"),
