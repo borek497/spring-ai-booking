@@ -12,10 +12,10 @@ import java.time.LocalDate;
 import static org.springframework.format.annotation.DateTimeFormat.ISO.DATE;
 
 public record BookableUnitSearchCriteria(
-        @NotNull
         @Positive
         @ToolParam(
-                description = "ID of the property to search within, obtained from property search results"
+                description = "ID of the property to search within, obtained from property search results",
+                required = false
         ) Long propertyId,
 
         @NotNull

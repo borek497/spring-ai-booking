@@ -10,7 +10,7 @@ public interface BookableUnitUseCase {
 
     BookableUnit getByBookableUnitId(Long id);
     List<BookableUnit> getByPropertyId(Long propertyId);
-    List<BookableUnit> search(BookableUnitSearchCriteria criteria);
+    List<BookableUnit> searchWithCriteria(BookableUnitSearchCriteria criteria);
     //BookableUnitStaffDetails getStaffDetailsById(Long id);
     BookableUnitSummary getDetailsById(Long id);
 }

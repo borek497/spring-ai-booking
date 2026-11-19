@@ -8,9 +8,11 @@ import pl.borek497.bookingEngine.bookableUnit.application.BookableUnitSearchCrit
 import pl.borek497.bookingEngine.bookableUnit.application.port.in.BookableUnitUseCase;
 import pl.borek497.bookingEngine.bookableUnit.application.port.out.*;
 import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnit;
+import pl.borek497.bookingEngine.bookableUnit.domain.BookableUnitType;
 import pl.borek497.bookingEngine.bookableUnit.domain.details.*;
 import pl.borek497.bookingEngine.common.application.exceptions.EntityNotFoundException;
 import pl.borek497.bookingEngine.reservation.application.port.out.ReservationRepositoryPort;
+import pl.borek497.bookingEngine.reservation.domain.Reservation;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ import java.util.List;
 @Validated
 class BookableUnitService implements BookableUnitUseCase {
 
-    private BookableUnitRepositoryPort repository;
+    private BookableUnitRepositoryPort bookableUnitRepositoryPort;
     private ReservationRepositoryPort reservationRepositoryPort;
     private ApartmentDetailsRepositoryPort apartmentDetailsRepositoryPort;
     private HotelRoomDetailsRepositoryPort hotelRoomDetailsRepositoryPort;
@@ -28,28 +30,66 @@ class BookableUnitService implements BookableUnitUseCase {
 
     @Override
     public BookableUnit getByBookableUnitId(Long bookableUnitId) {
-        return repository
+        return bookableUnitRepositoryPort
                 .findByBookableUnitId(bookableUnitId)
                 .orElseThrow(() -> new EntityNotFoundException(BookableUnit.class, bookableUnitId));
     }
 
     @Override
     public List<BookableUnit> getByPropertyId(Long propertyId) {
-        return repository.findByPropertyId(propertyId);
+        return bookableUnitRepositoryPort.findByPropertyId(propertyId);
     }
 
     @Override
-    public List<BookableUnit> search(BookableUnitSearchCriteria criteria) {
-        return repository
-                .search(criteria)
+    public List<BookableUnit> searchWithCriteria(BookableUnitSearchCriteria criteria) {
+        if (criteria.startDate() == null || criteria.endDate() == null) {
+            throw new IllegalArgumentException("Start date and end date are required");
+        }
+
+        if (!criteria.endDate().isAfter(criteria.startDate())) {
+            throw new IllegalArgumentException("End date must be after start date");
+        }
+
+        return bookableUnitRepositoryPort
+                .searchWithCriteria(criteria)
                 .stream()
-                .filter(unit -> !reservationRepositoryPort.existsOverlappingReservation(
+                .filter(unit -> unit.getBookableUnitType() == criteria.bookableUnitType())
+                .filter(unit -> {
+                    if (unit.getBookableUnitType() == BookableUnitType.CAMPING) {
+                        return hasEnoughCampingCapacity(unit, criteria);
+                    } else {
+                        return !reservationRepositoryPort.existsOverlappingReservation(
+                                unit.getId(),
+                                criteria.startDate(),
+                                criteria.endDate()
+                        );
+                    }
+                }).toList();
+    }
+
+    private boolean hasEnoughCampingCapacity(BookableUnit unit, BookableUnitSearchCriteria criteria) {
+        List<Reservation> overlappingReservations = reservationRepositoryPort
+                .findOverlappingReservations(
                         unit.getId(),
                         criteria.startDate(),
                         criteria.endDate()
-                ))
-                .filter(unit -> unit.getBookableUnitType() == criteria.bookableUnitType())
-                .toList();
+                );
+
+        return criteria
+                .startDate()
+                .datesUntil(criteria.endDate())
+                .allMatch(night -> {
+                            long occupiedPlaces = overlappingReservations
+                                    .stream()
+                                    .filter(reservation ->
+                                            !night.isBefore(reservation.getStartDate()) && night.isBefore(reservation.getEndDate())
+                                    )
+                                    .mapToLong(Reservation::getGuestsNumber)
+                                    .sum();
+
+                            return occupiedPlaces + criteria.numberOfGuests() <= unit.getMaxGuests();
+                        }
+                );
     }
 
     @Override
@@ -68,6 +108,7 @@ class BookableUnitService implements BookableUnitUseCase {
             case COTTAGE -> cottageDetailsRepositoryPort
                     .findByBookableUnitId(bookableUnit.getId())
                     .orElseThrow(() -> new EntityNotFoundException(CottageDetails.class, bookableUnitId));
+            //case CAMPING -> dopisać
             default ->
                     throw new IllegalArgumentException("Unrecognized bookableUnitType: " + bookableUnit.getBookableUnitType());
         };

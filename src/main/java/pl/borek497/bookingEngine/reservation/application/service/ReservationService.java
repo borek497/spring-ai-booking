@@ -100,6 +100,7 @@ class ReservationService implements ReservationUseCase {
         }
     }
 
+    //odrzuca rezerwację gdy istnieje kolidująca
     private void validateAvailability(CreateReservationCommand command) {
         if (reservationRepositoryPort.existsOverlappingReservation(command.getBookableUnitId(), command.getStartDate(), command.getEndDate())) {
             throw new IllegalStateException(

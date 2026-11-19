@@ -50,7 +50,7 @@ class BookableUnitController {
     @GetMapping("/available")
     public List<BookableUnitResponse> getAvailableUnits(@Valid @ModelAttribute BookableUnitSearchCriteria criteria) {
         return bookableUnitUseCase
-                .search(criteria)
+                .searchWithCriteria(criteria)
                 .stream()
                 .map(BookableUnitResponse::fromModel)
                 .toList();
