@@ -5,4 +5,4 @@ GET http://localhost:8080/properties/211
 GET http://localhost:8080/properties?province=lubuskie
 
 ### Pobranie dostępnych property po jakimś filtrze - propertyType
-GET http://localhost:8080/properties?propertyType=APARTMENT
+GET http://localhost:8080/properties?propertyType=CAMPING

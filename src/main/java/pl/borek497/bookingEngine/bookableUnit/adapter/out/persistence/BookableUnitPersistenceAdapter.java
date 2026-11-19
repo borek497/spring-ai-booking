@@ -42,12 +42,12 @@ class BookableUnitPersistenceAdapter implements BookableUnitRepositoryPort {
     }
 
     @Override
-    public List<BookableUnit> search(BookableUnitSearchCriteria criteria) {
+    public List<BookableUnit> searchWithCriteria(BookableUnitSearchCriteria criteria) {
         List<BookableUnit> units = findByPropertyId(criteria.propertyId());
         return units
                 .stream()
-                .filter(u -> u.getStatus() == Status.ACTIVE)
-                .filter(u -> u.getMaxGuests() >= criteria.numberOfGuests())
+                .filter(bookableUnit -> bookableUnit.getStatus() == Status.ACTIVE)
+                .filter(bookableUnit -> bookableUnit.getMaxGuests() >= criteria.numberOfGuests())
                 .toList();
     }
 }

@@ -6,5 +6,5 @@ public enum BookableUnitType {
     APARTMENT,
     COTTAGE,
     CARAVAN,
-    CAMPING_AREA
+    CAMPING
 }

@@ -28,13 +28,22 @@ class ReservationAdapter implements ReservationRepositoryPort {
                                                 LocalDate startDate,
                                                 LocalDate endDate) {
         return reservationJpaRepository
-                .findAll()
+                .findAllByBookableUnitId(bookableUnitId)
                 .stream()
-                .anyMatch(reservation ->
-                        reservation.getBookableUnitId().equals(bookableUnitId)
-                                && reservation.getStartDate().isBefore(endDate)
+                .anyMatch(reservation -> reservation.getStartDate().isBefore(endDate)
                                 && reservation.getEndDate().isAfter(startDate)
                 );
+    }
+
+    @Override
+    public List<Reservation> findOverlappingReservations(Long bookableUnitId, LocalDate startDate, LocalDate endDate) {
+        return reservationJpaRepository
+                .findAllByBookableUnitId(bookableUnitId)
+                .stream()
+                .filter(reservation -> reservation.getStartDate().isBefore(endDate)
+                        && reservation.getEndDate().isAfter(startDate))
+                .map(mapper::toDomain)
+                .toList();
     }
 
     @Override

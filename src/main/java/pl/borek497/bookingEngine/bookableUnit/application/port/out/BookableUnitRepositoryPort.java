@@ -11,5 +11,5 @@ public interface BookableUnitRepositoryPort {
     Optional<BookableUnit> findByBookableUnitId(Long bookableUnitId);
     Optional<BookableUnit> findByIdForUpdate(Long id);
     List<BookableUnit> findByPropertyId(Long propertyId);
-    List<BookableUnit> search(BookableUnitSearchCriteria criteria);
+    List<BookableUnit> searchWithCriteria(BookableUnitSearchCriteria criteria);
 }

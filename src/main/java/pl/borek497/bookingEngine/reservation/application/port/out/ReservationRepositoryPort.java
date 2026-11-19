@@ -17,4 +17,7 @@ public interface ReservationRepositoryPort {
     );
     Optional<Reservation> findById(Long id);
     List<Reservation> findByCustomerId(Long customerId);
+    List<Reservation> findOverlappingReservations(Long bookableUnitId,
+                                                  LocalDate startDate,
+                                                  LocalDate endDate);
 }
